@@ -21,7 +21,7 @@ function App() {
       </header>
       <div>
         <ul>
-          <Plylst title={"a"} songs={[{name:"Noise",pos:1,timeSec:"00:50" }, {name:"Fear of the dark",pos:2,timeSec:"00:06"}]} ></Plylst>
+          <Plylst title={"a"} songs={[{name:"Noise",timeSec:200 }, {name:"Fear of the dark",timeSec:600}]} ></Plylst>
         </ul>
       </div>
     </div>

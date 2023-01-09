@@ -1,14 +1,21 @@
 import Reacrt, { FC } from 'react';
 import { Interface } from 'readline';
 
-interface ITime{
-    t :String;
+interface ITime {
+    t: number;
 }
 
-const Time: FC<ITime> = ({t}) => {
+const Time: FC<ITime> = ({ t }) => {
+
+    function toTime(tsec: number) {
+        let date = new Date(0);
+        date.setSeconds(tsec); 
+        return date.toISOString().substring(11, 19);
+        
+    };
 
     return (
-        <span>{t}</span>
+        <span>{toTime(t)}</span>
     )
 }
 

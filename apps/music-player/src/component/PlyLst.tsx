@@ -9,7 +9,9 @@ interface Songs {
 }
 
 const PlayList: FC<Songs> = ({ songs, title }) => {
-    return (<li>{songs.map(s => <SongNode song={s} />)}</li>)
+    return (<li>{songs.map((s,i) =>{
+        s.pos=i+1;
+        return <SongNode song={s} />})}</li>)
 }
 
 

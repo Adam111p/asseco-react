@@ -2,15 +2,16 @@ import Reacrt, { FC } from 'react';
 import Time from './time';
 
 export interface Song {
-    pos: number; //z opcjonalnym miałem problem 
+    pos?: number; //z opcjonalnym miałem problem 
     name: String;
-    timeSec: String; // to na int później 
+    timeSec: number; // to na int później 
 }
 interface SongL {
     song: Song;
 }
 const SongNode: FC<SongL> = ({ song }) => {
 
+    
     return (<div style={{ display: "box" }}>
 
         <span> {song.pos} </span>
