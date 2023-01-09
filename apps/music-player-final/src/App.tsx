@@ -1,6 +1,7 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
 import Playlist from '../../music-player-final/src/components/Playlist/Playlist';
 import './App.css';
+import Footer from './components/Footer/Footer';
 import songs from './songs';
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         }}
       />
       <Playlist title="Nowa playlista" songs={songs} />
+      <Footer />
     </div>
   );
 }
