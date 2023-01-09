@@ -33,6 +33,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
         duration={currentlyPlaying ? currentlyPlaying.duration : 0}
         performer={currentlyPlaying ? currentlyPlaying.performer : ''}
       />
+      {songState.isPlaying && <p>aktualny stan</p>}
       <ul style={{
         listStyle: 'none',
         margin: 0,

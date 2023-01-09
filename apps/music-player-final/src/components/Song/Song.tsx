@@ -7,7 +7,7 @@ interface SongProps extends ISong {
   handleClick: (s: ISong) => void;
 }
 
-class Song extends React.Component<SongProps> {
+class Song extends React.Component<SongProps, {isPlaying: boolean, isFavorite: boolean}> {
   constructor(props: SongProps) {
     super(props);
 
@@ -44,6 +44,7 @@ class Song extends React.Component<SongProps> {
         <span style={{ fontSize: '2rem', marginRight: 16 }}>{this.props.index}</span>
         <div>
           <strong>{this.props.title}</strong> - {this.props.performer}
+          {this.state.isPlaying && <p>Aktualne gramy!</p>}
         </div>
       </div>    
       {convertDuration(this.props.duration)}
