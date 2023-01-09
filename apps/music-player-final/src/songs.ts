@@ -1,4 +1,10 @@
-const songs = [
+export interface ISong {
+    title: string;
+    duration: number;
+    performer: string;
+}
+
+const songs: ISong[] = [
   {
       title: 'Tears in heaven',
       duration: 272,

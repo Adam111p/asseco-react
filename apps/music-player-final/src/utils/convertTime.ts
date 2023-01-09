@@ -1,3 +1,3 @@
-export const convertSecondsToMinutes = () => {
-  return '';
+export const convertSecondsToMinutes = (d: number) => {
+  return '' + d;
 }

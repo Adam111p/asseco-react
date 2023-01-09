@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
+import { ISong } from '../../songs';
 import Song from '../Song/Song';
 
 interface PlaylistProps {
   title: string;
-  songs: unknown[];
+  songs: ISong[];
 }
 
 const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
@@ -11,7 +12,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     <div>
       <h2>{title}</h2>
       <ul>
-        {songs.map(song => <Song name="abc" />)}
+        {songs.map((song, i) => <Song index={i + 1} {...song} />)}
       </ul>
     </div>
   )
