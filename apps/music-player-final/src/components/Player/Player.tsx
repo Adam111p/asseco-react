@@ -3,9 +3,11 @@ import { ISong } from '../../songs';
 
 interface PlayerProps extends ISong{}
 
-const Player: FC<PlayerProps> = ({ title }) => {
+const Player: FC<PlayerProps> = ({ title, performer }) => {
+  const showTitle = title ? `${performer} - ${title}` : 'not playing';
+
   return (
-    <div>currently playing: {title}</div>
+    <div>currently playing: {showTitle}</div>
   )
 }
 

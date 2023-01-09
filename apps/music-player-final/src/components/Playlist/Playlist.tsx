@@ -26,14 +26,18 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
   }
 
   return (
-    <div onClick={play}>
+    <div onClick={play} style={{ border: '1px solid', color: '#fff', padding: 15, }}>
       <h2>{title}</h2>
       <Player
         title={currentlyPlaying ? currentlyPlaying.title : ''}
         duration={currentlyPlaying ? currentlyPlaying.duration : 0}
         performer={currentlyPlaying ? currentlyPlaying.performer : ''}
       />
-      <ul>
+      <ul style={{
+        listStyle: 'none',
+        margin: 0,
+        padding: 0,
+      }}>
         {songs.map((song, i) => <Song
           index={i + 1} 
           handleClick={setCurrentlyPlaying}

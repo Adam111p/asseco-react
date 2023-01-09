@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import { ISong } from '../../songs';
-import { convertSecondsToMinutes } from '../../utils/convertTime';
+import { convertDuration } from '../../utils/convertTime';
 
 interface SongProps extends ISong {
   index: number;
@@ -32,7 +32,7 @@ class Song extends React.Component<SongProps> {
   render(): React.ReactNode {
     return <li
       style={{
-        color: 'blue',
+        padding: 15,
       }}
       onClick={(e) => {
         const { title, duration, performer } = this.props;
@@ -40,10 +40,13 @@ class Song extends React.Component<SongProps> {
         this.props.handleClick({ title, duration, performer });
       }}
     >
-      {this.props.index}
-      {this.props.title}
-      {this.props.performer}
-      {convertSecondsToMinutes(this.props.duration)}
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <span style={{ fontSize: '2rem', marginRight: 16 }}>{this.props.index}</span>
+        <div>
+          <strong>{this.props.title}</strong> - {this.props.performer}
+        </div>
+      </div>    
+      {convertDuration(this.props.duration)}
     </li>
   }
 }

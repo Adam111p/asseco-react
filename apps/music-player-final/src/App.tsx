@@ -5,7 +5,7 @@ import songs from './songs';
 
 function App() {
   return (
-    <div className="App">
+    <div style={{ maxWidth: 500, margin: '0 auto', padding: 15, background: '#222' }}>
       <Playlist title="Nowa playlista" songs={songs} />
     </div>
   );
