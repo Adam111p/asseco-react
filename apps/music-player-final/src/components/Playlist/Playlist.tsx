@@ -16,7 +16,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     isPlaying: false,
     isFavorite: false,
   });
-  const [songsState, setSongsState] = useState(songs);
+  const [songsState, setSongsState] = useState<ISong[]>([]);
   const [sortDirection, setSortDirection] = useState<'ASC' | 'DESC'>('ASC');
 
   const [ currentlyPlaying, setCurrentlyPlaying ] = useState<ISong | null>(null);
@@ -28,6 +28,21 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     }));
   }
 
+  const fetchGetData = async () =>{
+    try {
+      const res = await fetch("http://localhost:8000/api/songs");
+      const { data,errors } = await res.json();
+      console.log(data);
+      setSongsState(data);
+    } catch (error) {
+      console.log(error);
+    }
+
+  };
+  useEffect(() => {
+    fetchGetData();
+  }, []);
+
   useEffect(() => {
     setSortDirection((prev) => {
       return prev === 'ASC' ? 'DESC' : 'ASC'
@@ -35,7 +50,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
   }, [songsState]);
 
   const handleSort = useCallback(() => {
-    const result = [...songs].sort((a, b) => {
+    const result = [...songsState].sort((a, b) => {
       if (sortDirection === 'ASC') {
         return a.duration - b.duration;
       }
