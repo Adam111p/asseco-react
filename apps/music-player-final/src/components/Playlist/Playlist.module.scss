@@ -1,0 +1,11 @@
+@use '../../styles/settings/variables' as colors;
+
+.Playlist {
+  border: 1px solid;
+  color: colors.$white;
+  padding: 15px;
+
+  .Title {
+
+  }
+}

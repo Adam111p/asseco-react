@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState, memo } from 'react';
+import { StyledFooter } from './Footer.styled';
 
 const Footer = memo(() => {
   const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
@@ -24,7 +25,7 @@ const Footer = memo(() => {
     }));
   }
   
-  return <footer>
+  return <StyledFooter padding={20}>
     <button onClick={() => {
       setFeedbackFormVisible((prev) => !prev);
     }}>Give me a feedback?</button>
@@ -38,7 +39,7 @@ const Footer = memo(() => {
         </form>
       )
     }
-  </footer>
+  </StyledFooter>
 });
 
 Footer.displayName = 'MemoFooter';

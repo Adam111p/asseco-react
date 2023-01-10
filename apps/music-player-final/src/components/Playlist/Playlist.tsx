@@ -3,6 +3,7 @@ import { ISong } from '../../models/Song';
 import { prepareHash } from '../../utils/prepareHash';
 import Player from '../Player/Player';
 import Song from '../Song/Song';
+import styles from './Playlist.module.scss';
 
 interface PlaylistProps {
   title: string;
@@ -50,9 +51,9 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
   }, [songs, sortDirection]);
 
   return (
-    <div onClick={play} style={{ border: '1px solid', color: '#fff', padding: 15, }}>
-      <h2>{title}</h2>
-      <button onClick={handleSort}>Sort {sortDirection}</button>
+    <div className={styles.Playlist} onClick={play}>
+      <h2 className={styles.Title}>{title}</h2>
+      <button onClick={handleSort} className='Playlist__Button'>Sort {sortDirection}</button>
       <Player
         title={currentlyPlaying ? currentlyPlaying.title : ''}
         duration={currentlyPlaying ? currentlyPlaying.duration : 0}
