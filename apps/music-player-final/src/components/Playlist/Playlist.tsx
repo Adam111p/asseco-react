@@ -15,6 +15,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     isPlaying: false,
     isFavorite: false,
   });
+  const [songsState, setSongsState] = useState(songs);
 
   const [ currentlyPlaying, setCurrentlyPlaying ] = useState<ISong | null>(null);
 
@@ -25,9 +26,16 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     }));
   }
 
+  const handleSort = () => {
+    const result = [...songs].sort((a, b) => a.duration - b.duration);
+  
+    setSongsState(result);
+  }
+
   return (
     <div onClick={play} style={{ border: '1px solid', color: '#fff', padding: 15, }}>
       <h2>{title}</h2>
+      <button onClick={handleSort}>Sort ASC</button>
       <Player
         title={currentlyPlaying ? currentlyPlaying.title : ''}
         duration={currentlyPlaying ? currentlyPlaying.duration : 0}
@@ -39,7 +47,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
         margin: 0,
         padding: 0,
       }}>
-        {songs.map((song, i) => <Song
+        {songsState.map((song, i) => <Song
           index={i + 1} 
           handleClick={setCurrentlyPlaying}
           {...song}
