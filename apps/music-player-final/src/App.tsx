@@ -1,14 +1,15 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import Playlist from '../../music-player-final/src/components/Playlist/Playlist';
 import './App.css';
 import Footer from './components/Footer/Footer';
-import songs from './songs';
+import { ISong } from './songs';
 
 function App() {
   const [ formData, setFormData ] = useState({
     password: '123',
     name: 'abc'
   });
+  const [songs, setSongs] = useState<ISong[]>([])
 
   const saveData = (fieldName: string, fieldValue: string, prevValue = formData) => {
     return {
@@ -16,6 +17,21 @@ function App() {
       [fieldName]: fieldValue,
     }
   }
+
+  const fetchData = async () => {
+    try {
+      const res = await fetch('http://localhost:8000/api/songs');
+      const { data } = await res.json();
+
+      setSongs(data);
+    } catch (err) {
+      
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div style={{ maxWidth: 500, margin: '0 auto', padding: 15, background: '#222' }}>

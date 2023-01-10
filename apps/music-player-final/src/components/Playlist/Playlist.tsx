@@ -34,6 +34,10 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     });
   }, [songsState]);
 
+  useEffect(() => {
+    setSongsState(songs);
+  }, [songs])
+
   const handleSort = useCallback(() => {
     const result = [...songs].sort((a, b) => {
       if (sortDirection === 'ASC') {
