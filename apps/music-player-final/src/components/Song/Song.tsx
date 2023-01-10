@@ -1,10 +1,11 @@
 import React, { SyntheticEvent } from 'react';
-import { ISong } from '../../songs';
 import { convertDuration } from '../../utils/convertTime';
+import { Link } from 'react-router-dom';
+import { ISong } from '../../models/Song';
 
 interface SongProps extends ISong {
   index: number;
-  handleClick: (s: ISong) => void;
+  handleClick: (s: Omit<ISong, 'id'>) => void;
 }
 
 class Song extends React.Component<SongProps, {isPlaying: boolean, isFavorite: boolean}> {
@@ -45,6 +46,7 @@ class Song extends React.Component<SongProps, {isPlaying: boolean, isFavorite: b
         <div>
           <strong>{this.props.title}</strong> - {this.props.performer}
           {this.state.isPlaying && <p>Aktualne gramy!</p>}
+          <Link to={`/playlist/${this.props.id}`}>Zobacz</Link>
         </div>
       </div>    
       {convertDuration(this.props.duration)}

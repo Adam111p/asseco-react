@@ -1,36 +1,43 @@
 {
   "songs": [
     {
+      "id": 1,
       "title": "Tears in heaven",
       "duration": 272,
       "performer": "Eric Clapton"
     },
     {
+      "id": 2,
       "title": "Your song",
       "duration": 245,
       "performer": "Elton John"
     },
     {
+      "id": 3,
       "title": "Remember the name",
       "duration": 231,
       "performer": "Fort Minor"
     },
     {
+      "id": 4,
       "title": "Limeryki o narodach",
       "duration": 543,
       "performer": "Jacek Kaczmarski"
     },
     {
+      "id": 5,
       "title": "What a wonderful world",
       "duration": 140,
       "performer": "Louis Armstrong"
     },
     {
+      "id": 6,
       "title": "In your eyes",
       "duration": 238,
       "performer": "The weekend"
     },
     {
+      "id": 7,
       "title": "Cold heart",
       "duration": 203,
       "performer": "Elton John"

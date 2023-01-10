@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
-import { ISong } from '../../songs';
+import { ISong } from '../../models/Song';
 
-interface PlayerProps extends ISong{}
+interface PlayerProps extends Omit<ISong, 'id'>{}
 
 const Player: FC<PlayerProps> = ({ title, performer, duration }) => {
   const showTitle = useMemo(() => {

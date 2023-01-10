@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { ISong } from '../../songs';
+import { ISong } from '../../models/Song';
 import { prepareHash } from '../../utils/prepareHash';
 import Player from '../Player/Player';
 import Song from '../Song/Song';
@@ -19,7 +19,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
   const [songsState, setSongsState] = useState(songs);
   const [sortDirection, setSortDirection] = useState<'ASC' | 'DESC'>('ASC');
 
-  const [ currentlyPlaying, setCurrentlyPlaying ] = useState<ISong | null>(null);
+  const [ currentlyPlaying, setCurrentlyPlaying ] = useState<Omit<ISong, 'id'> | null>(null);
 
   const play = () => {
     setSongState((prevState) => ({

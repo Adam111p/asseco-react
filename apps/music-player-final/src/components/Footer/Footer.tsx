@@ -39,6 +39,8 @@ const Footer = memo(() => {
       )
     }
   </footer>
-})
+});
+
+Footer.displayName = 'MemoFooter';
 
 export default Footer;
