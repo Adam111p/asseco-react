@@ -1,5 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { ISong } from '../../songs';
+import { prepareHash } from '../../utils/prepareHash';
 import Player from '../Player/Player';
 import Song from '../Song/Song';
 
@@ -16,6 +17,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     isFavorite: false,
   });
   const [songsState, setSongsState] = useState(songs);
+  const [sortDirection, setSortDirection] = useState<'ASC' | 'DESC'>('ASC');
 
   const [ currentlyPlaying, setCurrentlyPlaying ] = useState<ISong | null>(null);
 
@@ -26,16 +28,27 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     }));
   }
 
-  const handleSort = () => {
-    const result = [...songs].sort((a, b) => a.duration - b.duration);
+  useEffect(() => {
+    setSortDirection((prev) => {
+      return prev === 'ASC' ? 'DESC' : 'ASC'
+    });
+  }, [songsState]);
+
+  const handleSort = useCallback(() => {
+    const result = [...songs].sort((a, b) => {
+      if (sortDirection === 'ASC') {
+        return a.duration - b.duration;
+      }
+      return b.duration - a.duration;
+    });
   
     setSongsState(result);
-  }
+  }, [songs, sortDirection]);
 
   return (
     <div onClick={play} style={{ border: '1px solid', color: '#fff', padding: 15, }}>
       <h2>{title}</h2>
-      <button onClick={handleSort}>Sort ASC</button>
+      <button onClick={handleSort}>Sort {sortDirection}</button>
       <Player
         title={currentlyPlaying ? currentlyPlaying.title : ''}
         duration={currentlyPlaying ? currentlyPlaying.duration : 0}
@@ -48,7 +61,8 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
         padding: 0,
       }}>
         {songsState.map((song, i) => <Song
-          index={i + 1} 
+          index={i + 1}
+          key={prepareHash(song.performer, song.title, song.duration)}
           handleClick={setCurrentlyPlaying}
           {...song}
         />)}

@@ -1,6 +1,6 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState, memo } from 'react';
 
-const Footer = () => {
+const Footer = memo(() => {
   const [isFeedbackFormVisible, setFeedbackFormVisible] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -39,6 +39,6 @@ const Footer = () => {
       )
     }
   </footer>
-}
+})
 
 export default Footer;
