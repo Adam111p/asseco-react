@@ -35,8 +35,9 @@ class Song extends React.Component<SongProps, {isPlaying: boolean, isFavorite: b
         padding: 15,
       }}
       onClick={(e) => {
-        const { title, duration, performer } = this.props;
+        const { title, duration, performer} = this.props;
         this.play(e);
+        
         this.props.handleClick({ title, duration, performer });
       }}
     >
