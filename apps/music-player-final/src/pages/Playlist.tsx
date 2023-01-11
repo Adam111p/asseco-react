@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Notification from '../common/Notification/Notification';
+import Notification from '../common/components/Notification/Notification';
 import Playlist from '../player/components/Playlist/Playlist';
 import { ISong } from '../player/models/Song';
 import { buildUrl } from '../utils/api';
