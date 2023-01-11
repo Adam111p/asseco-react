@@ -4,6 +4,8 @@ import { prepareHash } from '../../../utils/prepareHash';
 import Player from '../Player/Player';
 import Song from '../Song/Song';
 import styles from './Playlist.module.scss';
+import { useDispatch } from 'react-redux';
+import { clearAllCount } from '../../redux/playerSlice';
 
 interface PlaylistProps {
   title: string;
@@ -21,6 +23,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
   const [sortDirection, setSortDirection] = useState<'ASC' | 'DESC'>('ASC');
 
   const [ currentlyPlaying, setCurrentlyPlaying ] = useState<Omit<ISong, 'id'> | null>(null);
+  const dispatch = useDispatch();
 
   const play = () => {
     setSongState((prevState) => ({
@@ -50,8 +53,12 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
     setSongsState(result);
   }, [songs, sortDirection]);
 
+  const clear =() => {
+    dispatch(clearAllCount({}));  };
+    
   return (
     <div className={styles.Playlist} onClick={play}>
+      <button onClick={handleSort} className='Playlist__Button'>Clear count</button>
       <h2 className={styles.Title}>{title}</h2>
       <button onClick={handleSort} className='Playlist__Button'>Sort {sortDirection}</button>
       <Player

@@ -15,10 +15,13 @@ export const playerSlice = createSlice({
     incrementPlays: (state, action) => {
       const { id } = action.payload;
       state.songs[id] = (state.songs[id] || 0) + 1;
+    },
+    clearAllCount: (state, action) => {
+        state.songs = {};
     }
   },
 })
 
-export const { incrementPlays } = playerSlice.actions;
+export const { incrementPlays ,clearAllCount } = playerSlice.actions;
 
 export default playerSlice.reducer;
