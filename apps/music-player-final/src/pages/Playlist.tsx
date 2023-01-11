@@ -9,9 +9,10 @@ const PlaylistPage = () => {
   
   const fetchData = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/songs');
+      const url = process.env.REACT_APP_SONGS_BASE_URL;
+      const res = await fetch(url+'/songs');
       const { data } = await res.json();
-      if (data.length < 10) {
+      if (data.length < 1) {
         throw new Error('nie udalo sie pobrac')
       }
       setSongs(data);

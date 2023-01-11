@@ -1,5 +1,6 @@
 import { FC, useMemo } from 'react';
 import { ISong } from '../../models/Song';
+import style from './Player.module.css'
 
 interface PlayerProps extends Omit<ISong, 'id'>{}
 
@@ -9,7 +10,7 @@ const Player: FC<PlayerProps> = ({ title, performer, duration }) => {
   }, [title, performer]);
 
   return (
-    <div>currently playing: {showTitle}</div>
+    <div className={style.Playlist}>currently playing: {showTitle}</div>
   )
 }
 
