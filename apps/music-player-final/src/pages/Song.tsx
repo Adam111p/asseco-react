@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { IDetailedSong } from '../models/Song';
+import { IDetailedSong } from '../player/models/Song';
+import { buildUrl } from '../utils/api';
 
 const Song = () => {
   const { id } = useParams();
@@ -8,7 +9,7 @@ const Song = () => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/api/songs/${id}`);
+      const res = await fetch(buildUrl(`songs/${id}`));
       const { data } = await res.json();
 
       console.log(data);

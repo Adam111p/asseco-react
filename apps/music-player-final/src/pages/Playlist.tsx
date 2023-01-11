@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import Notification from '../components/Notification/Notification';
-import Playlist from '../components/Playlist/Playlist';
-import { ISong } from '../models/Song';
+import Notification from '../common/Notification/Notification';
+import Playlist from '../player/components/Playlist/Playlist';
+import { ISong } from '../player/models/Song';
+import { buildUrl } from '../utils/api';
 
 const PlaylistPage = () => {
   const [songs, setSongs] = useState<ISong[]>([])
@@ -9,11 +10,11 @@ const PlaylistPage = () => {
   
   const fetchData = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/songs');
+      const res = await fetch(buildUrl(`songs`));
       const { data } = await res.json();
-      if (data.length < 10) {
-        throw new Error('nie udalo sie pobrac')
-      }
+      // if (data.length < 10) {
+      //   throw new Error('nie udalo sie pobrac')
+      // }
       setSongs(data);
     } catch (err: any) {
       setNotification(err.message);

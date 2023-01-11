@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { ISong } from '../../models/Song';
-import { prepareHash } from '../../utils/prepareHash';
+import { prepareHash } from '../../../utils/prepareHash';
 import Player from '../Player/Player';
 import Song from '../Song/Song';
 import styles from './Playlist.module.scss';
@@ -59,7 +59,6 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
         duration={currentlyPlaying ? currentlyPlaying.duration : 0}
         performer={currentlyPlaying ? currentlyPlaying.performer : ''}
       />
-      {songState.isPlaying && <p>aktualny stan</p>}
       <ul style={{
         listStyle: 'none',
         margin: 0,
