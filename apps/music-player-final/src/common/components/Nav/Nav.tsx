@@ -3,11 +3,21 @@ import styles from './Nav.module.scss';
 import { Avatar } from '@mui/material';
 import { useContext } from 'react';
 import { userContext } from '../../contexts/userContext';
+import { themeContext } from '../../contexts/themeContext';
 
 const Nav = () => {
   const user = useContext(userContext)
+  const theme = useContext(themeContext)
+
+  const click = ()=>{
+    console.log(theme?.theme);
+    if (theme?.theme){
+    theme.theme=theme.theme==='light'?'dark':'light';
+    }
+  }
   return (
     <nav className={styles.Nav}>
+      <button onClick={click}>Switch theme</button>
       {user && <>
         <Avatar src={user.avatar}/>
         <h4>{user.name} ({user.level})</h4>

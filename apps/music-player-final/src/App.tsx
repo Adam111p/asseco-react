@@ -7,6 +7,7 @@ import Song from './pages/Song';
 import Nav from './common/components/Nav/Nav';
 import { User, UserContextProvider } from './common/contexts/userContext';
 import { useEffect, useState } from 'react';
+import { ThemeContextProvider } from './common/contexts/themeContext';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -21,16 +22,18 @@ function App() {
 
   return (
     <UserContextProvider value={user}>
-      <div style={{ maxWidth: 500, margin: '0 auto', padding: 15, background: '#222' }}>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/playlist" element={<PlaylistPage />}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/playlist/:id" element={<Song />}/>
-        </Routes>
-        <Footer />
-      </div>
+      <ThemeContextProvider value={{theme:"light"}}>
+        <div style={{ maxWidth: 500, margin: '0 auto', padding: 15, background: '#222' }}>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/playlist" element={<PlaylistPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/playlist/:id" element={<Song />} />
+          </Routes>
+          <Footer />
+        </div>
+      </ThemeContextProvider>
     </UserContextProvider>
   );
 }

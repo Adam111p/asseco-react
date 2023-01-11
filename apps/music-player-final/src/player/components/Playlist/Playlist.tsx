@@ -1,9 +1,10 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { ISong } from '../../models/Song';
 import { prepareHash } from '../../../utils/prepareHash';
 import Player from '../Player/Player';
 import Song from '../Song/Song';
 import styles from './Playlist.module.scss';
+import { themeContext } from '../../../common/contexts/themeContext';
 
 interface PlaylistProps {
   title: string;
@@ -28,7 +29,8 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
       isFavorite: songState.isFavorite,
     }));
   }
-
+  const theme = useContext(themeContext);
+  
   useEffect(() => {
     setSortDirection((prev) => {
       return prev === 'ASC' ? 'DESC' : 'ASC'
@@ -51,7 +53,7 @@ const Playlist: FC<PlaylistProps> = ({ title, songs }) => {
   }, [songs, sortDirection]);
 
   return (
-    <div className={styles.Playlist} onClick={play}>
+    <div className={theme?.theme==="light"? styles.PlaylistLight: styles.Playlist} onClick={play}>
       <h2 className={styles.Title}>{title}</h2>
       <button onClick={handleSort} className='Playlist__Button'>Sort {sortDirection}</button>
       <Player
